@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarala&display=swap');
+:root {
+    --primaryColor: #3d8afeb6;
+    --secondaryColor: #3D8AFE;
+    --borderColor: #e5e5e5;
+}
+
+
+/* worked successfully */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarala', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifs;
+}
+
+
+/* main container */
+
+.mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+
+/* image and name id box */
+
+.avatar_name_id {
+    display: flex;
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+/* image box */
+
+.avatar {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* img */
+
+.avatar img {
+    height: 453px;
+    width: 382px;
+    object-fit: cover;
+    border-radius: 40%;
+}
+
+
+/* name and id box */
+
+.name_id {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.name_id h3 {
+    font-size: 40px;
+}
+
+.name_id h4 {
+    font-size: 28px;
+}
+
+
+/* devices section */
+
+.device_container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* device countainer header */
+
+.device_container h2 {
+    margin-top: 100px;
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.device_header {
+    flex-basis: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    color: var(--secondaryColor);
+    border-top: 2px solid var(--borderColor);
+    border-bottom: 2px solid var(--borderColor);
+    /* padding: 10px 0px; */
+}
+
+.device_list {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.device {
+    flex-basis: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0px;
+}
+
+.device_header li:not(.lastchild),
+.device li:not(.lastchild) {
+    flex-basis: 23%;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.lastchild {
+    flex-basis: 6%;
+    display: flex;
+    gap: 10px;
+    color: red;
+}
+
+.device li span {
+    background-color: var(--primaryColor);
+    padding: 8px 20px;
+}
+
+
+/* add button */
+
+.addButton {
+    border: none;
+    outline: none;
+    border-radius: 50%;
+}
+
+.addButton img {
+    height: 47px;
+    width: 47px;
+}
+
+
+/* Add device Box section */
+
+.add_device {
+    flex-basis: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 0px;
+    position: relative;
+    /* before click */
+    display: none;
+}
+
+form {
+    width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.promptBtn {
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_device li:not(.lastchild) {
+    flex-basis: 23%;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.add_device li span {
+    background-color: var(--borderColor);
+    padding: 8px 20px;
+}
+
+.add_device li input {
+    height: 2.2rem;
+    border: 1px solid var(--secondaryColor);
+}
+
+::placeholder {
+    text-align: center;
+    color: #8b8a8a;
+    opacity: 1;
+    /* Firefox */
+}
+
+ :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #8b8a8a;
+}
+
+ ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #8b8a8a;
+}
+
+.promptBtn img {
+    height: 35px;
+    width: 35px;
+}
+
+
+/*  */
+
+
+/* edit page part */
+
+
+/*  */

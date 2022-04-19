@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view/css/signin.css">
+    <title>Sign in</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <form action="controller/signin.php" method='post'>
+            <h2>Choose Account Type</h2>
+            <div class="login-type">
+                <!-- <div class="type-default">
+                    
+                    <label for="default">
+						<img src="../images/profile.png" alt="Default user">
+						<span>Default</span>
+					</label>
+                    <input type="radio" name="default">
+                </div>
+                <div class="type-admin">
+                    <div class="type-admin">
+                        <label for="admin">
+							<img src="../images/admin-with-cogwheels.png" alt="Admin user">
+							<span>Admin</span>
+						</label>
+                        <input type="radio" name="admin">
+                    </div>
+                    
+                </div> -->
+                <select name="login-type" id="login-type">
+                    <option value="default">Default</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="input-section">
+                <label for="username">
+                   <span> User Name</span>
+                    <div class="input-field">
+                 
+            <input type="text" name="username" required></div>
+			</label>
+                <label for="password">
+                   <span> Password </span>
+                    <div class="input-field">
+				
+            <input type="password" name="password" required>
+			<div class="show-password">
+				<img src="../images/eye.png" alt="eye" id="eye">
+				<img src="../images/hide.png" alt="hide" id="hide">
+			</div>
+            </div>
+            
+			</label>
+
+            </div>
+            <input type='Submit' name='submit' value="Login" class="btn signin-btn">
+        </form>
+    </div>
+
+</body>
+
+</html>
