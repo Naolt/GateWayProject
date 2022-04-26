@@ -1,3 +1,10 @@
+<?php 
+session_start();
+echo $_SESSION['username'];
+    if(($_SESSION['username'])){
+        echo "am in am logged ins";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +12,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/student-search.css">
+    <!-- <link rel="stylesheet" href="../css/student-search.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin-account.css">
     <script defer src="../js/admin-script.js"></script>
+    <script defer src="../js/script.js"></script>
     <title>Accounts</title>
 </head>
 
@@ -16,7 +25,7 @@
     <div class="sidebar">
         <div class="nav-logo">
             <img src="../images/aastu.png" alt="aastu logo">
-            <span>AASTU GMS</span>
+            <span id="system-name">AASTU GMS</span>
         </div>
         <div class="user-profile">
             <img src="../images/profile.png" alt="aastu logo" width="50px" height="50px">
@@ -25,30 +34,33 @@
 
         <ul class="sidebar-nav">
             <li class="side-links"><img src="../images/search-white.png" alt="search icon">
-                <a href="." class="sidenav-link">Search</a>
+                <a href="admin-search.html" class="sidenav-link">Search</a>
             </li>
 
             <li class="side-links"><img src="../images/student-white.png" alt="search icon">
-                <a href="." class="sidenav-link">Student</a>
+                <a href="admin-student.html" class="sidenav-link">Student</a>
             </li>
 
             <li class="side-links"><img src="../images/teacher-white.png" alt="search icon">
-                <a href="." class="sidenav-link">Staff</a>
+                <a href="admin-staff.html" class="sidenav-link">Staff</a>
             </li>
             <li class="side-links"><img src="../images/securityWhite.png" alt="search icon">
-                <a href="." class="sidenav-link">Gate Managers</a>
+                <a href="admin-security.html" class="sidenav-link">Gate Managers</a>
             </li>
 
             <li><img src="../images/account.png" alt="search icon" width="50px" height="50px">
-                <a href="." class="sidenav-link">Manage Account</a>
+                <a href="" class="sidenav-link">Manage Account</a>
             </li>
 
             <li class="side-links"><img src="../images/report-white.png" alt="search icon">
-                <a href="." class="sidenav-link">Daily Report</a>
+                <a href="admin-daily-report.html" class="sidenav-link">Daily Report</a>
             </li>
 
             <li><img src="../images/logout-white.png" alt="search icon" width="50px" height="50px">
-                <a href="." class="sidenav-link">Log Out</a>
+                <form action="../../controller/logout.php" method="post" class="sidenav-link">
+                    <input type="submit" name="submit" value="Log out">
+
+                </form>
             </li>
 
         </ul>
@@ -63,7 +75,7 @@
         <div class="content-body ">
             <div class="burger-menu-container">
 
-                <img src="../images/burger-menu-white.png" alt="burger menu">
+                <img src="../images/burger-menu-white.png" alt="burger menu" id="burgerMenu">
             </div>
 
             <div class="accounts_section">
@@ -127,7 +139,14 @@
                         <li class="user-id ">ETS 0923/33</li>
                         <li class="user-gate ">Tulu Dimtu</li>
                         <li class="user-last-login ">Sep 5,2010</li>
-                        <li class="actions "><img src="../images/sidemore.png " alt="menu "></li>
+                        <li class="actions ">
+							<img src="../images/sidemore.png " alt="menu " id="three-dots-menu1 " onmouseover="openmenu(this.id) " >
+							<div class="menu-choice " id="menu-choice1 "  onmouseleave="closemenu(this.id) ">
+                                <div class="choice1 ">View profile</div>
+                                <div class="choice2 ">Edit profile</div>
+                       		</div>
+
+                        </li>
                     </ul>
 
                     <ul class="list-content ">
@@ -136,7 +155,14 @@
                         <li class="user-id ">ETS 0923/33</li>
                         <li class="user-gate ">Tulu Dimtu</li>
                         <li class="user-last-login ">Sep 5,2010</li>
-                        <li class="actions "><img src="../images/sidemore.png " alt="menu "></li>
+                        <li class="actions ">
+							<img src="../images/sidemore.png " alt="menu " id="three-dots-menu2 " onmouseover="openmenu(this.id) " >
+							<div class="menu-choice " id="menu-choice2 "  onmouseleave="closemenu(this.id) ">
+                                <div class="choice1 ">View profile</div>
+                                <div class="choice2 ">Edit profile</div>
+                       		</div>
+
+                        </li>
                     </ul>
 
                 </div>
@@ -150,3 +176,9 @@
 </body>
 
 </html>
+<?php 
+    }
+    else{
+        header("Location: ../../index.html ");
+    }
+?>

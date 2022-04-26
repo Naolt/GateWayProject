@@ -1,3 +1,8 @@
+<?php
+include '../../model/database.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +10,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/student-search.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin-student.css">
     <script defer src="../js/admin-script.js"></script>
+    <script defer src="../js/script.js"></script>
+
     <title>Accounts</title>
 </head>
 
@@ -16,7 +23,7 @@
     <div class="sidebar">
         <div class="nav-logo">
             <img src="../images/aastu.png" alt="aastu logo">
-            <span>AASTU GMS</span>
+            <span id="system-name">AASTU GMS</span>
         </div>
         <div class="user-profile">
             <img src="../images/profile.png" alt="aastu logo" width="50px" height="50px">
@@ -60,7 +67,7 @@
         <div class="content-body ">
             <div class="burger-menu-container">
 
-                <img src="../images/burger-menu-white.png" alt="burger menu">
+                <img src="../images/burger-menu-white.png" alt="burger menu" id="burgerMenu">
             </div>
 
             <div class="accounts_section">
@@ -138,20 +145,27 @@
                         <li></li>
                         <li>Name</li>
                         <li>ID</li>
-                        <li>Gate</li>
-                        <li>Last Login</li>
+                        <li>Gender</li>
+                        <li>Education Level</li>
                         <li></li>
                     </ul>
+<?php 
+$query = "SELECT * FROM user";
+$result = mysqli_query($connection,$query);
+if($result){
+    while($row1 = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        
 
+?>
                     <ul class="list-content ">
                         <li><img src="../images/profile.png " alt="profile "></li>
-                        <li class="user-name ">Martha Mekow</li>
-                        <li class="user-id ">ETS 0923/33</li>
-                        <li class="user-gate ">Tulu Dimtu</li>
-                        <li class="user-last-login ">Sep 5,2010</li>
+                        <li class="user-name "><?php  echo $row1['firstName']." ".$row1['lastName']  ?></li>
+                        <li class="user-id "><?php  echo $row1['ID'];  ?></li>
+                        <li class="user-gender "><?php  echo $row1['gender'];  ?></li>
+                        <li class="user-level "><?php  echo $row1['level'];  ?></li>
                         <li class="actions ">
-							<img src="../images/sidemore.png " alt="menu " id="three-dots-menu1 " onmouseover="openmenu(this.id) " >
-							<div class="menu-choice " id="menu-choice1 "  onmouseleave="closemenu(this.id) ">
+							<img src="../images/sidemore.png " alt="menu " id="three-dots-<?php echo $row1['ID'] ?> " onmouseover="openmenu(this.id) " >
+							<div class="menu-choice " id="<?php echo $row1['ID']  ?>"  onmouseleave="closemenu(this.id) ">
                                 <div class="choice1 ">View profile</div>
                                 <div class="choice2 ">Edit profile</div>
                        		</div>
@@ -159,12 +173,19 @@
                         </li>
                         </ul>
 
+    <?php 
+        }
+    }
+    
+    
+    ?>
+
                         <ul class="list-content ">
                             <li><img src="../images/profile.png " alt="profile "></li>
                             <li class="user-name ">Martha Mekow</li>
                             <li class="user-id ">ETS 0923/33</li>
-                            <li class="user-gate ">Tulu Dimtu</li>
-                            <li class="user-last-login ">Sep 5,2010</li>
+                            <li class="user-gate ">Female</li>
+                            <li class="user-last-login ">Masters</li>
                             <li class="actions " >
 								<img src="../images/sidemore.png " alt="menu " id="three-dots-menu2 " onmouseover="openmenu(this.id) " >
 								<div class="menu-choice " id="menu-choice2 "  onmouseleave="closemenu(this.id) ">

@@ -1,7 +1,6 @@
 
 <?php
-echo "ddd";
-session_start();
+include '../controller/session.php';
 include '../model/database.php';
 
 if(isset($_POST['submit'])){
@@ -9,13 +8,20 @@ if(isset($_POST['submit'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$query  = "SELECT * From admin where username = '$username' and password = '$password '";
+	$query  = "SELECT * From admin  where username = '$username' and password = '$password '";
 	$result = mysqli_query($connection,$query);
+	if(mysqli_num_rows($result) == 1){
+		$_SESSION['username'] = $username;
+		echo $_SESSION['username'];
+		echo "session variables are set";
+		
+		header("Location: ../view/pages/admin-account.php");
+	}else{
+		header("Location: ../index.html");
+	}
+		echo "<br>".mysqli_num_rows($result)."<br>";
 	while($row1 = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-		if(mysqli_num_rows($result) == 1){
-			header("Location: ../view/pages/admin-account.html");
-		}
-		echo "ID :{$row1['ID']}";
+		echo "ID :{$row1['ID']}    "."   Firstname:{$row1['firstName']}<br>";
 	}
 }
 

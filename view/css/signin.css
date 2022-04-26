@@ -24,11 +24,11 @@
     justify-content: center;
     align-items: flex-start;
     background-color: var(--lightyellow);
-    padding-top: 250px;
+    padding-top: 150px;
 }
 
 .form-container form {
-    width: 440px;
+    width: 400px;
     height: fit-content;
     background-color: white;
     padding: 20px 20px;

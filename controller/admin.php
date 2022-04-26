@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
 		// echo "ID :{$row1['ID']} <br>".
 		// "First Name :{$row1['firstName']}";
 		// ;
-		echo $row1.
+		echo $row1;
 	}
 }
 ?>

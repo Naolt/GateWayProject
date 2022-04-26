@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/student-search.css">
     <script defer src="../js/script.js"></script>
-    <title>Student Search</title>
+    <!-- <script defer src="../js/admin-script.js"></script> -->
+
+    <title>Admin-Search</title>
 </head>
 
 <body>
@@ -15,7 +18,7 @@
     <div class="sidebar">
         <div class="nav-logo">
             <img src="../images/aastu.png" alt="aastu logo">
-            <span>AASTU GMS</span>
+            <span id="system-name">AASTU GMS</span>
         </div>
         <div class="user-profile">
             <img src="../images/profile.png" alt="aastu logo" width="50px" height="50px">
@@ -24,18 +27,22 @@
 
         <ul class="sidebar-nav">
             <li class="side-links"><img src="../images/search-white.png" alt="search icon">
-                <a href="." class="sidenav-link">Search</a>
+                <a href="admin-search.html" class="sidenav-link">Search</a>
             </li>
 
-            <li class="side-links"><img src="../images/student-white.png" alt="search icon">
+            <li class="side-links"><img src="../images/student-white.png" alt="student icon">
                 <a href="." class="sidenav-link">Student</a>
             </li>
 
-            <li class="side-links"><img src="../images/teacher-white.png" alt="search icon">
+            <li class="side-links"><img src="../images/teacher-white.png" alt="staff icon">
                 <a href="." class="sidenav-link">Staff</a>
             </li>
 
-            <li class="side-links"><img src="../images/report-white.png" alt="search icon">
+            <li class="side-links"><img src="../images/securityWhite.png" alt="security icon">
+                <a href="." class="sidenav-link">Gate Manager</a>
+            </li>
+
+            <li class="side-links"><img src="../images/report-white.png" alt="report icon">
                 <a href="." class="sidenav-link">Daily Report</a>
             </li>
 
@@ -55,7 +62,7 @@
         <div class="content-body ">
             <div class="burger-menu-container">
 
-                <img src="../images/burger-menu-white.png" alt="burger menu">
+                <img src="../images/burger-menu-white.png" alt="burger menu" id="burgerMenu">
 
             </div>
             <div class="search-box-container">

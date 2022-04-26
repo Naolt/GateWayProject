@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<?php
+	include('../../model/database.php');
+	$query = "CREATE View LOG1
+	As 
+	SELECT 
+	userdevicelog.ID ,Count(*) as numofEntry 
+	FROM
+	userdevicelog WHERE exitDate < '2021:4:10 0:0:0' GROUP BY ID
+
+	SELECT
+	u.ID ID,
+	u.firstName firstName,
+	u.lastName lastName,
+	ul.numofEntry EntryCount
+	FROM
+	user u
+	INNER JOIN LOG1 ul
+	ON u.ID = ul.ID
+	WHERE
+	ul.numofEntry > 4
+	";
+
+	$result = mysqli_query($connection,$query);
+	while($row1 = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+		echo "ID :{$row1['ID']} <br>"." 
+		  Firstname:{$row1['firstName']}<br>"."
+		Lastname:{$row1['lastName']}<br>
+		EntryCount:{$row1['EntryCount']}<br> 
+		  ";
+	}
+
+
+
+	?>
+
+</body>
+</html>
