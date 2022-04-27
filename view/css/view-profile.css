@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarala&display=swap');
+:root {
+    --darkblue: #000957;
+    --blue: #344CB7;
+    --lightblue: #577BC1;
+    --lightblue2: #577ac128;
+    --lightgray: #e5e5e5;
+    --yellow: #EBE645;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarala', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifs;
+}
+
+.view-profile-header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-bottom: 2px solid var(--lightgray);
+}
+
+.view-profile-header h2 {
+    font-size: 29px;
+}
+
+.view-profile-header .small-nav a {
+    font-size: 20px;
+}
+
+.edit-profile-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    /* padding: 0px 25px; */
+}
+
+.edit-profile-btn-container button {
+    width: 120px;
+    height: 40px;
+    background-color: var(--blue);
+    color: white;
+    font-size: 18px;
+    margin: 5px 0px;
+}
+
+.view-profile-user-profile {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    border-radius: 2px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 200px;
+    font-size: 25px;
+    height: fit-content;
+}
+
+.user-img {
+    height: 400px;
+}
+
+.user-img img {
+    height: 400px;
+    width: 500px;
+    /* border-radius: 50%; */
+}
+
+.other-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.other-info li {
+    color: var(--lightblue);
+    letter-spacing: 1.5px;
+}
+
+.other-info li span {
+    font-weight: 700;
+    color: black;
+    letter-spacing: 0px;
+}

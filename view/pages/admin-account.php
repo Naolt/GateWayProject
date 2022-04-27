@@ -38,7 +38,7 @@ echo $_SESSION['username'];
             </li>
 
             <li class="side-links"><img src="../images/student-white.png" alt="search icon">
-                <a href="admin-student.html" class="sidenav-link">Student</a>
+                <a href="admin-student.php" class="sidenav-link">Student</a>
             </li>
 
             <li class="side-links"><img src="../images/teacher-white.png" alt="search icon">
