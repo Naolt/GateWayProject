@@ -24,3 +24,8 @@ function resize() {
     systemHeader.classList.toggle('collapsed-system-header');
     burgerMenu[0].classList.toggle('collapsed-burger-menu-container');
 }
+
+function openBox(open, close) {
+    document.getElementById(open).style.display = 'flex';
+    document.getElementById(close).style.display = 'none';
+}

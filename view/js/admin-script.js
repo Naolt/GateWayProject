@@ -1,10 +1,6 @@
 var createbtn = document.getElementById('create-account-btn');
 var closebtn = document.getElementById('close-btn')
 var createbox = document.getElementsByClassName('create-account-container')[0]
-console.log(createbtn)
-
-createbtn.addEventListener('click', openContainer);
-closebtn.addEventListener('click', close)
 
 
 function openContainer() {
@@ -24,17 +20,22 @@ function closemenu(id) {
     document.getElementById(id).style.display = 'none'
 }
 
+function closeBox(cname) {
+    document.getElementsByClassName(cname)[0].style.display = 'none';
+}
 
 //  live searching]
 
-function getStd(val) {
+function getStd(val, sortBy = 'ID', sortType = 'ASC') {
     let type = document.getElementById('searchby').value;
     var typeNvalue = {
         'type': type,
-        'value': val
+        'value': val,
+        'sortBy': sortBy,
+        'sortType': sortType
     }
     var typeNvalueJson = JSON.stringify(typeNvalue);
-    console.log(typeof(typeNvalueJson));
+    // console.log(typeof(typeNvalueJson));
 
     $student = "";
     if (val == "") {
@@ -77,9 +78,20 @@ function viewProfile(id) {
     window.location = '../../controller/view-profile.php';
 }
 
-function setAction(action, id) {
-    let selecttag = "select-" + id.substring(5);
-    console.log(id + " " + selecttag);
-    document.getElementById(selecttag).value = action;
-    document.getElementById(id).submit();
+function Desc(by) {
+    getStd(null, by, 'DESC')
 }
+
+function Asc(by) {
+    getStd(null, by, 'ASC')
+}
+
+// pop up close
+document.querySelector("#close-import-box").addEventListener("click", function(event) {
+    event.preventDefault();
+
+}, false);
+closeBox('import-box-container');
+document.getElementById('import-btn').addEventListener('click', function() {
+    document.getElementsByClassName('import-box-container')[0].style.display = 'flex';
+})

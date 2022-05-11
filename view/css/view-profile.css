@@ -80,11 +80,11 @@
 
 .other-info li {
     color: var(--lightblue);
-    letter-spacing: 1.5px;
+    /* letter-spacing: 1.5px; */
 }
 
 .other-info li span {
     font-weight: 700;
     color: black;
-    letter-spacing: 0px;
+    /* letter-spacing: 0px; */
 }

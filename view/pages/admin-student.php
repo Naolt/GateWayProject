@@ -42,6 +42,9 @@ include '../../model/database.php';
                 <li class="side-links"><img src="../images/teacher-white.png" alt="search icon">
                     <a href="." class="sidenav-link">Staff</a>
                 </li>
+                <li class="side-links"><img src="../images/securityWhite.png" alt="search icon">
+                    <a href="admin-security.html" class="sidenav-link">Gate Managers</a>
+                </li>
 
                 <li><img src="../images/account.png" alt="search icon" width="50px" height="50px">
                     <a href="." class="sidenav-link">Manage Account</a>
@@ -76,9 +79,9 @@ include '../../model/database.php';
                             <h3>Students List</h3>
                             <p>View and manage registered students here.</p>
                         </div>
-                        <div class="account-actions">
+                        <a class="account-actions" href="../../view/pages/admin-add-student.html">
                             <button class="add-account" id='create-account-btn'>Add Student</button>
-                        </div>
+</a>
                         <div class="create-account-container ">
                             <div class="create-account ">
 
@@ -147,45 +150,58 @@ include '../../model/database.php';
                     </div>
                     <ul class="list-header ">
                         <li></li>
-                        <li>Name</li>
-                        <li>ID</li>
-                        <li>Gender</li>
-                        <li>Education Level</li>
-                        <li></li>
-                    </ul>
-                    <div class="list-content-container " >
-                                    <?php 
-$query = "SELECT * FROM user ";
+                        <li>Name <span><img src="../images/dec.png " alt="sort " id="name-sort-dec " onclick="Asc('firstName') " ><img src="../images/asc.png " alt="sort " id="name-sort-asc " onclick="Desc('firstName') "></span>
+                                    </li>
+                                    <li>ID<span><img src="../images/dec.png " alt="sort " id="id-sort-dec "
+                                    onclick="Asc('ID')"
+                                    ><img src="../images/asc.png " alt="sort " id="id-sort-asc " 
+                                    onclick="Desc('ID')"
+                                    ></span></li>
+                                    <li>Gender</li>
+                                    <li>Education Level</li>
+                                    <li></li>
+                                    </ul>
+                                    <div class="list-content-container ">
+                                        <?php 
+$query = "SELECT * FROM user where type='student' ";
 $result = mysqli_query($connection,$query);
 if($result){
     while($row1 = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         
         ?>
-                                    <ul class="list-content ">
-                                        <li><img src="../images/profile.png " alt="profile "></li>
-                                        <li class="user-name ">
-                                            <?php  echo $row1['firstName']." ".$row1['lastName']  ?>
-                                        </li>
-                                        <li class="user-id ">
-                                            <?php  echo $row1['ID'];  ?>
-                                        </li>
-                                        <li class="user-gender ">
-                                            <?php  echo $row1['gender'];  ?>
-                                        </li>
-                                        <li class="user-level ">
-                                            <?php  echo $row1['level'];  ?>
-                                        </li>
-                                        <li class="actions ">
-                                            <img src="../images/sidemore.png " alt="menu " id="three-dots-<?php echo $row1[ 'ID'] ?> " onmouseover="openmenu(this.id) ">
-                                    <form method="post " action="../../controller/view-profile.php " class="menu-choice " id="form-<?php echo $row1[ 'ID'] ?>" onmouseleave="closemenu(this.id) ">
-                                        <div class="choice1 " onclick="setAction( 'view','form-<?php echo $row1[ 'ID'] ?>') ">View profile</div>
-                                        <div class="choice2 " onclick="setAction( 'edit','form-<?php echo $row1[ 'ID'] ?>') ">Edit profile</div>
-                                        <select name="click-action " id='select-<?php echo $row1[ ' ID '] ?>' style="display: none; ">
-                                    <option value='view'></option>
-                                    <option value='edit'></option>
-                                </select>
-                                        <input type="submit" name="action-submit" id="<?php echo $row1[ 'ID'] ?>btn">
-                                    </form>
+                                        <ul class="list-content ">
+                                            <li><img src="../images/profile.png " alt="profile "></li>
+                                            <li class="user-name ">
+                                                <?php  echo $row1['firstName']." ".$row1['lastName']  ?>
+                                            </li>
+                                            <li class="user-id ">
+                                                <?php  echo $row1['ID'];  ?>
+                                            </li>
+                                            <li class="user-gender ">
+                                                <?php  echo $row1['gender'];  ?>
+                                            </li>
+                                            <li class="user-level ">
+                                                <?php  echo $row1['level'];  ?>
+                                            </li>
+                                            <li class="actions ">
+                                                <img src="../images/sidemore.png " alt="menu " id="three-dots-<?php echo $row1[ 'ID'] ?> " onmouseover="openmenu(this.id) ">
+                                    <div class="menu-choice " id="form-<?php echo $row1[ 'ID'] ?>" onmouseleave="closemenu(this.id) ">
+                                        <form class="choice1 " action="../../controller/profile-option.php" method="post">
+                                            <input class="dot-menu-hidden" type="text" name="stdid" value=<?php echo $row1[ 'ID'] ?> >
+                                            <input type="submit" name="view" value="View profile">
+                                        </form>
+                                        <form action="../../controller/profile-option.php" method="post" class="choice1 ">
+                                            <input class="dot-menu-hidden" type="text" name="stdid" value=<?php echo $row1[ 'ID'] ?> >
+                                            <input type="submit" name="edit" value="Edit profile">
+                                        </form>
+                                        <form action="../../controller/profile-option.php" method="post" class="choice1 ">
+                                            <input class="dot-menu-hidden" type="text" name="stdid" value=<?php echo $row1[ 'ID'] ?> >
+                                            <input type="submit" name="delete" value="Delete profile">
+                                        </form>
+                                        
+
+
+                                    </div>
 
                                     </li>
                                     </ul>
@@ -220,6 +236,7 @@ if($result){
                         </div>
 
                     </div>
+
 
         </main>
 

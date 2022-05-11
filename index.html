@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="view/css/signin.css">
+    <script defer src="view/js/script.js"></script>
     <title>Sign in</title>
 </head>
 
 <body>
     <div class="form-container">
-        <form action="controller/signin.php" method='post'>
-            <h2>Choose Account Type</h2>
+        <form action="controller/signin.php" method='post' class="signin-box" id="signin-box">
+            <span>Choose Account Type</span>
             <div class="login-type">
                 <!-- <div class="type-default">
                     
@@ -33,7 +34,7 @@
                     
                 </div> -->
                 <select name="login-type" id="login-type">
-                    <option value="default">Default</option>
+                    <option value="employee">Default</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
@@ -58,7 +59,15 @@
 			</label>
 
             </div>
+            <div class="forgot-pass">
+                <span onclick="openBox('forgot-pass-box','signin-box')">Forgot Password</span>
+            </div>
             <input type='Submit' name='submit' value="Login" class="btn signin-btn">
+        </form>
+        <form action="controller/password-recovery.php" method="post" class="signin-box forgot-pass" id="forgot-pass-box">
+            <span>Password Recovery</span>
+            <input type="email" placeholder="   Email" name="email" required>
+            <input type="submit" name="submit" value="Next" class="btn btn_save">
         </form>
     </div>
 

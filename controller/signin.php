@@ -8,15 +8,18 @@ if(isset($_POST['submit'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$query  = "SELECT * From admin  where username = '$username' and password = '$password '";
+	$query  = "SELECT * From $loginType  where username = '$username' and password = '$password '";
 	$result = mysqli_query($connection,$query);
 	if(mysqli_num_rows($result) == 1){
 		$_SESSION['username'] = $username;
 		echo $_SESSION['username'];
 		echo "session variables are set";
-		
-		header("Location: ../view/pages/admin-account.php");
-	}else{
+			if($loginType == 'admin'){
+			header("Location: ../view/pages/admin-account.php");
+			}else{
+				header("Location: ../view/pages/reception_search.html");
+			}
+		}else{
 		header("Location: ../index.html");
 	}
 		echo "<br>".mysqli_num_rows($result)."<br>";

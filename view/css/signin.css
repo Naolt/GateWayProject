@@ -27,7 +27,7 @@
     padding-top: 150px;
 }
 
-.form-container form {
+.form-container .signin-box {
     width: 400px;
     height: fit-content;
     background-color: white;
@@ -35,10 +35,10 @@
     box-shadow: 8px 8px 10px black;
 }
 
-.form-container form h2 {
+.form-container .signin-box span {
     color: var(--blue);
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 
@@ -93,7 +93,7 @@
     display: flex;
     flex-wrap: wrap;
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 200;
 }
 
@@ -141,4 +141,33 @@
     color: var(--lightgray);
     margin-top: 100px;
     font-size: 18px;
+    border: none;
+    border-radius: 3px;
+}
+
+
+/* forgot password  */
+
+.signin-box.forgot-pass {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signin-box.forgot-pass .btn {
+    margin-top: 10px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+}
+
+.forgot-pass span {
+    text-decoration: underline;
+    color: #000957;
+    cursor: pointer;
+}
+
+.forgot-pass span:hover {
+    color: #577BC1;
 }
