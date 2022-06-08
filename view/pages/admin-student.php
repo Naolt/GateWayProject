@@ -1,6 +1,10 @@
 <?php
+include '../../controller/session.php';
 include '../../model/database.php';
+if(($_SESSION['ID']) && $_SESSION['admin']){
 
+unset($_SESSION['page']);   
+$_SESSION['page'] = "student";
 
 ?>
     <!DOCTYPE html>
@@ -14,58 +18,18 @@ include '../../model/database.php';
         <link rel="stylesheet" href="../css/admin-student.css">
         <script defer src="../js/admin-script.js"></script>
         <script defer src="../js/script.js"></script>
+        <script defer src="../js/delete.js"></script>
 
-        <title>Accounts</title>
+        <title>Student</title>
     </head>
 
     <body>
 
-        <div class="sidebar">
-            <div class="nav-logo">
-                <img src="../images/aastu.png" alt="aastu logo">
-                <span id="system-name">AASTU GMS</span>
-            </div>
-            <div class="user-profile">
-                <img src="../images/profile.png" alt="aastu logo" width="50px" height="50px">
-                <span>John Doe</span>
-            </div>
+    <?php
+    
+include_once('../include/sidebar.php');
 
-            <ul class="sidebar-nav">
-                <li class="side-links"><img src="../images/search-white.png" alt="search icon">
-                    <a href="." class="sidenav-link">Search</a>
-                </li>
-
-                <li class="side-links"><img src="../images/student-white.png" alt="search icon">
-                    <a href="." class="sidenav-link">Student</a>
-                </li>
-
-                <li class="side-links"><img src="../images/teacher-white.png" alt="search icon">
-                    <a href="." class="sidenav-link">Staff</a>
-                </li>
-                <li class="side-links"><img src="../images/securityWhite.png" alt="search icon">
-                    <a href="admin-security.html" class="sidenav-link">Gate Managers</a>
-                </li>
-
-                <li><img src="../images/account.png" alt="search icon" width="50px" height="50px">
-                    <a href="." class="sidenav-link">Manage Account</a>
-                </li>
-
-                <li class="side-links"><img src="../images/report-white.png" alt="search icon">
-                    <a href="." class="sidenav-link">Daily Report</a>
-                </li>
-
-                <li><img src="../images/logout-white.png" alt="search icon" width="50px" height="50px">
-                    <a href="." class="sidenav-link">Log Out</a>
-                </li>
-
-            </ul>
-        </div>
-        <main class="header_body">
-
-            <div class="header">
-                <img src="../images/profile.png" alt="avatar">
-                <span>Admin</span>
-            </div>
+?>
 
             <div class="content-body ">
                 <div class="burger-menu-container">
@@ -79,7 +43,7 @@ include '../../model/database.php';
                             <h3>Students List</h3>
                             <p>View and manage registered students here.</p>
                         </div>
-                        <a class="account-actions" href="../../view/pages/admin-add-student.html">
+                        <a class="account-actions" href="../../view/pages/admin-add-student.php">
                             <button class="add-account" id='create-account-btn'>Add Student</button>
 </a>
                         <div class="create-account-container ">
@@ -146,16 +110,16 @@ include '../../model/database.php';
                            <option value='ID'>Id</option>
                            <option value='firstName' selected>Name</option>
                        </select>  
-                       <input type="search " name="search_std " id="search_std " placeholder="search " onkeyup="getStd(this.value) " >
+                       <input type="search " name="search_std " id="search_std " placeholder="search " onkeyup="getStd(this.value,'student') " >
                     </div>
                     <ul class="list-header ">
                         <li></li>
-                        <li>Name <span><img src="../images/dec.png " alt="sort " id="name-sort-dec " onclick="Asc('firstName') " ><img src="../images/asc.png " alt="sort " id="name-sort-asc " onclick="Desc('firstName') "></span>
+                        <li>Name <span><img src="../images/dec.png " alt="sort " id="name-sort-dec " onclick="Asc('firstName','student') " ><img src="../images/asc.png " alt="sort " id="name-sort-asc " onclick="Desc('firstName','student') "></span>
                                     </li>
                                     <li>ID<span><img src="../images/dec.png " alt="sort " id="id-sort-dec "
-                                    onclick="Asc('ID')"
+                                    onclick="Asc('ID','student')"
                                     ><img src="../images/asc.png " alt="sort " id="id-sort-asc " 
-                                    onclick="Desc('ID')"
+                                    onclick="Desc('ID','student')"
                                     ></span></li>
                                     <li>Gender</li>
                                     <li>Education Level</li>
@@ -163,14 +127,14 @@ include '../../model/database.php';
                                     </ul>
                                     <div class="list-content-container ">
                                         <?php 
-$query = "SELECT * FROM user where type='student' ";
+$query = "SELECT * FROM user where user_type='student' ";
 $result = mysqli_query($connection,$query);
 if($result){
     while($row1 = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         
         ?>
                                         <ul class="list-content ">
-                                            <li><img src="../images/profile.png " alt="profile "></li>
+                                            <li><img src="<?php echo '../images/upload/'.$row1['imgUrl'];   ?>" alt="profile "></li>
                                             <li class="user-name ">
                                                 <?php  echo $row1['firstName']." ".$row1['lastName']  ?>
                                             </li>
@@ -181,7 +145,7 @@ if($result){
                                                 <?php  echo $row1['gender'];  ?>
                                             </li>
                                             <li class="user-level ">
-                                                <?php  echo $row1['level'];  ?>
+                                                <?php  echo $row1['user_level'];  ?>
                                             </li>
                                             <li class="actions ">
                                                 <img src="../images/sidemore.png " alt="menu " id="three-dots-<?php echo $row1[ 'ID'] ?> " onmouseover="openmenu(this.id) ">
@@ -194,9 +158,9 @@ if($result){
                                             <input class="dot-menu-hidden" type="text" name="stdid" value=<?php echo $row1[ 'ID'] ?> >
                                             <input type="submit" name="edit" value="Edit profile">
                                         </form>
-                                        <form action="../../controller/profile-option.php" method="post" class="choice1 ">
+                                        <form  class="choice1 ">
                                             <input class="dot-menu-hidden" type="text" name="stdid" value=<?php echo $row1[ 'ID'] ?> >
-                                            <input type="submit" name="delete" value="Delete profile">
+                                            <input type="button" name="delete" id="delete-<?php echo $row1[ 'ID'] ?>" onclick="sendUserID(this.id,'to-be-delete-id','delete-account-container')" value="Delete profile">
                                         </form>
                                         
 
@@ -236,6 +200,9 @@ if($result){
                         </div>
 
                     </div>
+                    <?php 
+                    include '../include/delete.php';
+                    ?>
 
 
         </main>
@@ -245,3 +212,9 @@ if($result){
     </body>
 
     </html>
+    <?php 
+    }
+    else{
+        header("Location: ../../index.php ");
+    }
+?>

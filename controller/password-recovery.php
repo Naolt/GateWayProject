@@ -9,7 +9,7 @@ require 'PHPMailer/src/SMTP.php';
 
 
 
-if(isset($_POST['submit']) && isset($_POST['email'])){
+if(isset($_POST['email'])){
 	
 $email = $_POST['email'];
 $query = "SELECT * FROM admin WHERE email = '$email'";
@@ -65,9 +65,11 @@ $lastName;
 		
 		// Send email 
 		if(!$mail->send()) { 
-			echo 'Message could not be sent. Mailer Error: '.$mail->ErrorInfo; 
+			echo "<div class='alert alert-danger' role='alert'>Message could not be sent. Mailer Error: '.$mail->ErrorInfo;</div>_bad";
+							 
 		} else { 
-			echo 'Message has been sent.'; 
+			echo "<div class='alert alert-success' role='alert'>Message has been send sucessfully</div>_good";
+
 		} 	
 	}
 }

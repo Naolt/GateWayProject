@@ -24,21 +24,42 @@ function closeBox(cname) {
     document.getElementsByClassName(cname)[0].style.display = 'none';
 }
 
+function closer(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function opener(id) {
+    document.getElementById(id).style.display = 'flex'
+}
+
+
+
 //  live searching]
 
-function getStd(val, sortBy = 'ID', sortType = 'ASC') {
+function getStd(val, userType, sortBy = 'ID', sortType = 'ASC', isAcc = false) {
+
+    if (sortBy == '') {
+        sortBy = 'ID';
+    }
+
+    if (sortType == '') {
+        sortType = 'ASC';
+    }
     let type = document.getElementById('searchby').value;
     var typeNvalue = {
         'type': type,
+        'userType': userType,
         'value': val,
         'sortBy': sortBy,
-        'sortType': sortType
+        'sortType': sortType,
+        'isAcc': isAcc
     }
+    console.log(typeNvalue);
     var typeNvalueJson = JSON.stringify(typeNvalue);
     // console.log(typeof(typeNvalueJson));
 
     $student = "";
-    if (val == "") {
+    if (val == "" && !isAcc) {
         //  do nothing
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -50,8 +71,24 @@ function getStd(val, sortBy = 'ID', sortType = 'ASC') {
 
             }
         };
-        xmlhttp.open("GET", "../../controller/getStudent.php?q=" + "isempty", true);
+        xmlhttp.open("get", "../../controller/getStudent.php?empty=" + userType, true);
         xmlhttp.send();
+    } else if (val == "" && isAcc) {
+        console.log('here');
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                for (let i = 0; i < document.getElementsByClassName('list-content').length; ++i) {
+                    document.getElementsByClassName('list-content')[i].style.display = "none";
+                }
+                document.getElementsByClassName('list-content-container')[0].innerHTML = this.responseText;
+
+            }
+        };
+        xmlhttp.open("get", "../../controller/getStudent.php?employees=employee", true);
+        xmlhttp.send();
+
     } else {
         // create an httpreqest obj
         var xmlhttp = new XMLHttpRequest();
@@ -71,27 +108,13 @@ function getStd(val, sortBy = 'ID', sortType = 'ASC') {
 
 }
 
-function viewProfile(id) {
-    console.log(id);
-    let realid = id.substring(0, id.length - 1);
-    document.cookie = "realid=" + realid + " path=/";
-    window.location = '../../controller/view-profile.php';
+
+
+function Desc(by, userType, isAcc) {
+    console.log(by + " " + userType);
+    getStd(null, userType, by, 'DESC', isAcc)
 }
 
-function Desc(by) {
-    getStd(null, by, 'DESC')
+function Asc(by, userType, isAcc) {
+    getStd(null, userType, by, 'ASC', isAcc)
 }
-
-function Asc(by) {
-    getStd(null, by, 'ASC')
-}
-
-// pop up close
-document.querySelector("#close-import-box").addEventListener("click", function(event) {
-    event.preventDefault();
-
-}, false);
-closeBox('import-box-container');
-document.getElementById('import-btn').addEventListener('click', function() {
-    document.getElementsByClassName('import-box-container')[0].style.display = 'flex';
-})
